@@ -1,7 +1,8 @@
 #!/bin/bash -v
 
-echo "Basic Packages Install"
+# Basic Packages Install and Enable epel repo
 
+yum --enablerepo=extras install epel-release
 yum install -y gcc dkms make qt libgomp patch git wget tcpdump bridge-utils python python-pip
 yum install -y kernel-headers kernel-devel binutils glibc-headers glibc-devel font-forge
 
@@ -19,7 +20,8 @@ yum install -y vagrant_2.1.1_x86_64.rpm
 vagrant plugin install vagrant-vbguest
 
 echo "Ansible Install"
-yum install -f ansible
+yum install -y ansible
+ansible-galaxy install Juniper.junos
 
 echo "JunOS Ansible modules installation"
 pip install --upgrade pip
